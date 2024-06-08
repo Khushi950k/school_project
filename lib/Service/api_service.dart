@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:school_project/model/AboutSchoolModel.dart';
+import 'package:school_project/model/LoginModel.dart';
 import 'package:school_project/model/MembersModel.dart';
 import 'package:school_project/model/PrincipalModel.dart';
 import 'package:school_project/model/UserModel.dart';
@@ -48,4 +49,16 @@ class ApiService{
       throw Exception("Network Error");
     }
   }
+  Future<LoginModel>LoginData()async{
+    var response =
+    await http.get(Uri.parse("https://school-alarm.com/demo/api/login/user_login"));
+    if (response.statusCode==200){
+      print("ok");
+      return loginModelFromJson(response.body);
+    }
+    else{
+      throw Exception("Network Error");
+    }
+  }
 }
+
